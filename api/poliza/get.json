@@ -1,0 +1,16 @@
+{
+    "success": true,
+    "message": "10 records loaded",
+    "data": [
+        {"cdsucur": 1, "cdramo": 600, "nmpoliza": "1-600-000001-ABCD", "nombreContra": "juan 1"},
+        {"cdsucur": 1, "cdramo": 600, "nmpoliza": "1-600-000002-ABCD", "nombreContra": "juan 2"},
+        {"cdsucur": 1, "cdramo": 600, "nmpoliza": "1-600-000003-ABCD", "nombreContra": "juan 3"},
+        {"cdsucur": 1, "cdramo": 600, "nmpoliza": "1-600-000004-ABCD", "nombreContra": "juan 4"},
+        {"cdsucur": 1, "cdramo": 600, "nmpoliza": "1-600-000005-ABCD", "nombreContra": "juan 5"},
+        {"cdsucur": 1, "cdramo": 600, "nmpoliza": "1-600-000006-ABCD", "nombreContra": "juan 6"},
+        {"cdsucur": 1, "cdramo": 600, "nmpoliza": "1-600-000007-ABCD", "nombreContra": "juan 7"},
+        {"cdsucur": 1, "cdramo": 600, "nmpoliza": "1-600-000008-ABCD", "nombreContra": "juan 8"},
+        {"cdsucur": 1, "cdramo": 600, "nmpoliza": "1-600-000009-ABCD", "nombreContra": "juan 9"},
+        {"cdsucur": 1, "cdramo": 600, "nmpoliza": "1-600-000010-ABCD", "nombreContra": "juan 10"}
+    ]
+}
