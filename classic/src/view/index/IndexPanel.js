@@ -1,7 +1,7 @@
 Ext.define('InduccionApp.view.index.IndexPanel', {
     extend: 'Ext.panel.Panel',
     xtype: 'indexpanel',
-    viewModel: 'indexpanelviewmodel',
+    //viewModel: 'indexpanelviewmodel',
 
     controller: 'indexpanel',
 
@@ -24,7 +24,7 @@ Ext.define('InduccionApp.view.index.IndexPanel', {
         defaults: {
             xtype: 'textfield',
             style: 'margin: 0 20px 20px 0',
-            allowBlank: false,
+            //allowBlank: false,
             minLength: 3,
             maxLength: 15
         },
@@ -33,22 +33,8 @@ Ext.define('InduccionApp.view.index.IndexPanel', {
             columns: 2
         },
         items: [{
-            fieldLabel: 'Sucursal',
-            name: 'cdsucur',
-            bind: {
-                value: '{sharedField}'
-            }
-        }, {
-            fieldLabel: 'Ramo',
-            name: 'cdramo'
-        }, {
-            fieldLabel: 'Póliza',
-            name: 'nmpoliza'
-        }, {
-            fieldLabel: 'binding value...',
-            bind: {
-                value: '{sharedField}'
-            }
+            fieldLabel: 'Buscar por nombre/apellidos',
+            name: 'filtro'
         }],
         buttons: [{
             text: 'Buscar',
@@ -64,31 +50,41 @@ Ext.define('InduccionApp.view.index.IndexPanel', {
         title: 'Resultados de búsqueda',
         frame: true,
         columns: [{
-            text: 'No.',
-            width: 60
+            xtype: 'actioncolumn',
+            width: 60,
+            items: [{
+                iconCls: 'x-fa fa-pencil',
+                handler: 'onEditarClic'
+            }, {
+                iconCls: 'x-fa fa-trash',
+                handler: 'onEliminarClic'
+            }]
         }, {
-            text: 'Sucursal',
+            text: 'Nombre',
             flex: 1,
-            dataIndex: 'cdsucur'
+            dataIndex: 'nombre'
         }, {
-            text: 'Ramo',
+            text: 'Apellido Paterno',
             flex: 1,
-            dataIndex: 'cdramo'
+            dataIndex: 'paterno'
         }, {
-            text: 'Poliza',
+            text: 'Apellido Materno',
             flex: 1,
-            dataIndex: 'nmpoliza'
+            dataIndex: 'materno'
         }, {
-            text: 'Contratante',
-            flex: 3,
-            dataIndex: 'nombreContra'
+            xtype: 'datecolumn',
+            text: 'Fecha Nacimiento',
+            dataIndex: 'fechaNacimiento',
+            format: 'D d M Y',
+            flex: 1
         }],
         store: {
             autoLoad: false,
-            model: 'InduccionApp.model.PolizaModel',
+            model: 'InduccionApp.model.PersonaModel',
             proxy: {
                 type: 'ajax',
-                url: 'api/poliza/get.json',
+                url: 'http://softitlan.com:8081/persona/getPersonasByFilter',
+                //url: 'api/persona/get.json',
                 reader: {
                     type: 'json',
                     rootProperty: 'data'
@@ -96,9 +92,10 @@ Ext.define('InduccionApp.view.index.IndexPanel', {
             }
         },
         tbar: [{
-            bind: {
+            /*bind: {
                 text: '{sharedField}',
-            },
+            },*/
+            text: 'Agregar',
             handler: 'onAgregarClic',
             iconCls: 'x-fa fa-plus'
         }]

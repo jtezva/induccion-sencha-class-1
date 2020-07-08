@@ -1,0 +1,7 @@
+{
+    "success": true,
+    "message": "10 records loaded",
+    "data": [
+        {"id":1,"nombre":"Pedro","paterno":"Perez","materno":"Sanchez","fechaNacimiento":"1990-08-17","esSoltero":1,"numHijos":0}
+    ]
+}

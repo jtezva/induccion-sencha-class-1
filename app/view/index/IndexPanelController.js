@@ -37,6 +37,64 @@ Ext.define('InduccionApp.view.index.IndexPanelController', {
 
     onAgregarClic: function (button) {
         console.log(arguments);
-        alert('onAgregarClic');
+        let me = this;
+        let view = me.getView();
+        let w = Ext.create({
+            xtype: 'personaform',
+            funcion: 'insertar',
+            listeners: {
+                show: function (comp) {
+                    Ext.toast('La ventana de formulario de persona se muestra en pantalla');
+                },
+                insert: function (comp) {
+                    Ext.toast('El formulario ha insertado una persona');
+                    view.down('grid').getStore().reload();
+                } 
+            }
+        });
+        w.show();
+    },
+
+    onEditarClic: function (view2222, rowIndex, colIndex, item, e, record) {
+        console.log(arguments);
+        let me = this;
+        let view = me.getView();
+        let w = Ext.create({
+            xtype: 'personaform',
+            funcion: 'update',
+            persona: record,
+            listeners: {
+                show: function (comp) {
+                    Ext.toast('La ventana de formulario de persona se muestra en pantalla');
+                },
+                update: function (comp) {
+                    Ext.toast('El formulario ha actualizado una persona');
+                    view.down('grid').getStore().reload();
+                } 
+            }
+        });
+        w.show();
+    },
+
+    onEliminarClic: function (view2222, rowIndex, colIndex, item, e, record) {
+        let me = this;
+        let view = me.getView();
+        Ext.Ajax.request({
+            url: 'http://softitlan.com:8081/persona/delete/' + record.data.id,
+            method: 'GET',
+            success: function (response) {
+                let json = Ext.JSON.decode(response.responseText);
+                if (json.success === true) {
+                    Ext.toast('Eliminado correctamente!');
+                    view.down('grid').getStore().reload();
+                } else {
+                    Ext.toast(json.message);
+                }
+            },
+            failure: function (response) {
+                console.error(response);
+                Ext.toast('Error en el servicio de eliminar');
+            }
+        });
     }
 });
